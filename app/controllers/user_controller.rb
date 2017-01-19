@@ -18,3 +18,12 @@ post '/users' do
     erb :'users/new'
   end
 end
+
+get '/users/:id' do
+  @user = User.find_by_id(params[:id])
+  if @user
+    erb :'users/show'
+  else
+    erb :'404', locals: { message: 'This User Does Not Exist'}
+  end
+end

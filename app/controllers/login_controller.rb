@@ -2,7 +2,7 @@ enable :sessions
 
 get '/login' do
   @user = User.new
-  erb :'/login'
+  erb :'login'
 end
 
 post '/login' do
@@ -11,7 +11,7 @@ post '/login' do
     session_login(@user.id)
     redirect '/'
   else
-    erb :'/login'
+    erb :'login'
   end
 end
 
