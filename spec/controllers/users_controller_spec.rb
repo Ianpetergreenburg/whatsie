@@ -29,7 +29,7 @@ describe 'users controller' do
       expect(last_response).to be_ok
     end
 
-    it 'displays form again if unsuccesful' do
+    it 'displays form again if unsuccessful' do
        post '/users'
 
       expect(last_request.url).to eq 'http://example.org/users'
