@@ -1,0 +1,22 @@
+<% @recipes["response"]["docs"].each do |doc| %>
+  <div class="article">
+  <% if !doc["headline"].empty? %>
+    <h2><%= doc["headline"]["name"] %></h2>
+
+    <p>url: <%= doc["web_url"] %></p>
+
+    <p>snippet: <%= doc["snippet"] %></p>
+    <p>lead paragraph: <%= doc["lead_paragraph"] %></p>
+    <p>source: <%= doc["source"] %></p>
+    <% doc["multimedia"].each do |media| %>
+      <% if media["subtype"] != 'thumbnail' %>
+        <img src="http://www.nytimes.com/<%= media["url"] %>">
+      <% end %>
+    <% end %>
+
+    <p> <%= doc.keys %> </p>
+  <% end %>
+  <p> <%= doc %> </p>
+  </div>
+<% end %>
+
