@@ -1,0 +1,13 @@
+.recipe {
+  width: 60%;
+  margin: 30px auto;
+  padding:20px;
+  border: solid 4px brown;
+  border-radius: 10px;
+  background-color: #8aebfc;
+}
+
+.recipe-image {
+  max-width:100%;
+  max-height:100%;
+}

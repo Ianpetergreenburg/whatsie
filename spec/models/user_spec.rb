@@ -23,4 +23,14 @@ describe User do
 
   end
 
+  describe 'associations' do
+    it 'should have many recipe books' do
+      should have_many :recipe_books
+    end
+
+    it 'should have many recipes' do
+      should have_many :recipes
+    end
+  end
+
 end

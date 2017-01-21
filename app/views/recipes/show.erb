@@ -1,22 +1,38 @@
 <% @recipes["response"]["docs"].each do |doc| %>
-  <div class="article">
-  <% if !doc["headline"].empty? %>
-    <h2><%= doc["headline"]["name"] %></h2>
+  <% url = doc["web_url"] %>
+  <% if url_exist?(url) %>
+    <div class="recipe">
+      <h2><%= name = doc["headline"]["name"] %></h2>
 
-    <p>url: <%= doc["web_url"] %></p>
+      <p>url: <%= url %> </p>
+      <p>lead paragraph: <%= doc["lead_paragraph"] %></p>
 
-    <p>snippet: <%= doc["snippet"] %></p>
-    <p>lead paragraph: <%= doc["lead_paragraph"] %></p>
-    <p>source: <%= doc["source"] %></p>
-    <% doc["multimedia"].each do |media| %>
-      <% if media["subtype"] != 'thumbnail' %>
-        <img src="http://www.nytimes.com/<%= media["url"] %>">
+
+      <% img_url = '' %>
+      <% doc["multimedia"].each do |media| %>
+        <% if media["subtype"] != 'thumbnail' %>
+          <% img_url = "http://www.nytimes.com/#{media["url"]}" %>
+          <img class="recipe-image" src="<%= img_url %>">
+        <% end %>
       <% end %>
-    <% end %>
 
-    <p> <%= doc.keys %> </p>
+      <h3>Prep</h3>
+      <% preparation = scrape_this(url) %>
+      <h4>Instructions</h4>
+      <%= instructions = scrape_ny_instructions(preparation) %>
+      <h4>Ingredients</h4>
+      <%= ingredients = scrape_ny_ingredients(preparation) %>
+
+      <form action='/recipes' method='post'>
+        <input type='hidden' name='recipe[url]' value="<%= url %>">
+        <input type='hidden' name='recipe[image_url]' value="<%= img_url %>">
+        <input type='hidden' name='recipe[instructions]' value="<%= noko_to_s(instructions) %>">
+        <input type='hidden' name='recipe[ingredients]' value="<%= noko_to_s(ingredients) %>">
+        <input type='hidden' name='recipe[name]' value="<%= name %>">
+        <input type='submit' value='Save to Recipe Book'>
+      </form>
+    </div>
   <% end %>
-  <p> <%= doc %> </p>
-  </div>
 <% end %>
+
 

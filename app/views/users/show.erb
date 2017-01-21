@@ -2,3 +2,18 @@
 
 <h1><%= @user.username %></h1>
 <a href="/recipes/random">random recipe</a>
+<% @user.recipes.each do |recipe| %>
+  <div class="recipe">
+    <h2><%= recipe.name %></h2>
+    <p> recipe source: <%= recipe.url %></p>
+    <% if recipe.image_url %>
+      <img class="recipe-image" src="<%= recipe.image_url %>">
+    <% end %>
+    <h3>Prep</h3>
+    <h4>Instructions</h4>
+    <%= recipe.instructions %>
+    <h4>Ingredients</h4>
+    <%= recipe.ingredients %>
+  </div>
+<% end %>
+
