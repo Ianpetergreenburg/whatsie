@@ -1,1 +1,18 @@
-<div id="home"></div>
+<div id="home">
+<h1>See The Recipes In Our DB</h1>
+<% Recipe.all.shuffle.each do |recipe| %>
+  <div class="recipe">
+    <h2><%= recipe.name %></h2>
+    <p> recipe source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
+    <% if recipe.image_url %>
+      <img class="recipe-image" src="<%= recipe.image_url %>">
+    <% end %>
+    <h3>Prep</h3>
+    <h4>Instructions</h4>
+    <%= recipe.instructions %>
+    <h4>Ingredients</h4>
+    <%= recipe.ingredients %>
+  </div>
+<% end %>
+
+</div>

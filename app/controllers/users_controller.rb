@@ -21,6 +21,7 @@ end
 
 get '/users/:id' do
   @user = User.find_by_id(params[:id])
+  @profile_id = params[:id]
   if @user
     erb :'users/show'
   else
