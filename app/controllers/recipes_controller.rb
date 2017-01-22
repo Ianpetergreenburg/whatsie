@@ -12,7 +12,14 @@ post '/recipes' do
   p params[:recipe][:image_url]
   if session_user
     if @recipe.persisted?
-        RecipeBook.create(user_id: session_user_id, recipe_id: @recipe.id)
+        recipe_book = RecipeBook.create(user_id: session_user_id, recipe_id: @recipe.id)
+        if request.xhr?
+          if recipe_book.persisted?
+            return json message: 'recipe saved!'
+          else
+            return json message: 'something went wrong, you already have this recipe in your collection'
+          end
+        end
     end
     redirect '/users/' + session_user_id.to_s
   else

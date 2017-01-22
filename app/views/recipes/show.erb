@@ -23,7 +23,7 @@
       <h4>Ingredients</h4>
       <%= ingredients = scrape_ny_ingredients(preparation) %>
 
-      <form action='/recipes' method='post'>
+      <form class='save-recipe-form' action='/recipes' method='post'>
         <input type='hidden' name='recipe[url]' value="<%= url %>">
         <input type='hidden' name='recipe[image_url]' value="<%= img_url %>">
         <input type='hidden' name='recipe[instructions]' value="<%= noko_to_s(instructions) %>">
