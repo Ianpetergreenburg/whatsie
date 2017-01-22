@@ -21,6 +21,8 @@ gem 'dotenv'
 gem 'json'
 gem 'httparty'
 
+gem 'nokogiri'
+
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
