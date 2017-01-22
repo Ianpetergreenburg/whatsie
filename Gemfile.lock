@@ -108,7 +108,7 @@ DEPENDENCIES
   rspec-html-matchers
   shotgun (~> 0.9.1)
   shoulda-matchers
-  sinatra (~> 1.0)
+  sinatra
   sinatra-contrib
 
 BUNDLED WITH
