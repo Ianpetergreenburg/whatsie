@@ -1,6 +1,6 @@
 <div id="home">
 <h1>See The Recipes In Our DB</h1>
-<% Recipe.all.shuffle.each do |recipe| %>
+<% Recipe.limit(10).order("RANDOM()").each do |recipe| %>
   <div class="recipe">
     <h2><%= recipe.name %></h2>
     <p> recipe source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
