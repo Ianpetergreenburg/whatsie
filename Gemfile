@@ -7,7 +7,7 @@ gem 'bcrypt'
 gem 'pg'
 
 # Sinatra driver
-gem 'sinatra', '~> 1.0'
+gem 'sinatra', '~>1.4.0'
 gem 'sinatra-contrib'
 
 gem 'activesupport', '~>4.2.0'
@@ -20,6 +20,7 @@ gem 'shotgun', '~>0.9.1'
 gem 'dotenv'
 gem 'json'
 gem 'httparty'
+gem 'rack-fontserve'
 
 group :test do
   gem 'shoulda-matchers'

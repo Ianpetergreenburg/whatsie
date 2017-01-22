@@ -29,7 +29,10 @@ class Recipe < ActiveRecord::Base
 
   def self.scrape_ingredients(noko_doc)
     doc = noko_doc.css('.recipe-ingredients')
-    doc.search('.//ul.recipe-ingredients[div.nutrition-container]').remove
+    nutrition_facts = doc.at_css('div.nutrition-container')
+    if nutrition_facts
+      nutrition_facts.parent.remove
+    end
     doc
   end
 

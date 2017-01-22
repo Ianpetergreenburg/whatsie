@@ -1,11 +1,16 @@
 <div class="profile"></div>
 
-<h1><%= @user.username %></h1>
-<a href="/recipes/random">random recipe</a>
+<% if session_user && session_user_id.to_s == @profile_id %>
+  <h1>Welcome, <%= @user.username %></h1>
+  <h3> Your Recipes! </h3>
+<% else %>
+  <h1>Welcome to <%= @user.username %>'s profile</h1>
+  <h3> <%= @user.username %>'s Saved Recipes! </h3>
+<% end %>
 <% @user.recipes.each do |recipe| %>
   <div class="recipe">
     <h2><%= recipe.name %></h2>
-    <p> recipe source: <%= recipe.url %></p>
+    <p> recipe source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
     <% if recipe.image_url %>
       <img class="recipe-image" src="<%= recipe.image_url %>">
     <% end %>
@@ -14,6 +19,16 @@
     <%= recipe.instructions %>
     <h4>Ingredients</h4>
     <%= recipe.ingredients %>
+    <% if session_user && session_user_id.to_s != @profile_id %>
+      <form action='/recipes' method='post'>
+        <input type='hidden' name='recipe[url]' value="<%= recipe.url %>">
+        <input type='hidden' name='recipe[image_url]' value="<%= recipe.image_url %>">
+        <input type='hidden' name='recipe[instructions]' value="<%= recipe.instructions %>">
+        <input type='hidden' name='recipe[ingredients]' value="<%= recipe.ingredients %>">
+        <input type='hidden' name='recipe[name]' value="<%= recipe.name %>">
+        <input type='submit' value='Save to Recipe Book'>
+      </form>
+    <% end %>
   </div>
 <% end %>
 

@@ -1,6 +1,10 @@
 get '/recipes/random' do
-  @recipes = Recipe.newyorktimes(rand(119).to_s)
-  erb :'/recipes/show'
+  if session_user
+    @recipes = Recipe.newyorktimes(rand(119).to_s)
+    erb :'/recipes/show'
+  else
+    erb :'404', locals: {message: 'Please Login To Look For New Recipes'}
+  end
 end
 
 post '/recipes' do
