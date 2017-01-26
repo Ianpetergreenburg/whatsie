@@ -12,7 +12,7 @@ require 'shoulda-matchers'
 require 'rack/test'
 require 'capybara'
 require 'capybara/rspec'
-require 'rspec-html-matchers'
+#require 'rspec-html-matchers'
 require 'database_cleaner'
 
 RSpec.configure do |config|
