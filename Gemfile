@@ -26,7 +26,7 @@ gem 'nokogiri'
 group :test do
   gem 'shoulda-matchers'
   gem 'rack-test'
-  gem 'rspec-html-matchers'
+  #gem 'rspec-html-matchers'
   gem 'rspec', '~>3.0'
   gem 'capybara'
   gem 'database_cleaner'
