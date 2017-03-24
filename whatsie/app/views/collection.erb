@@ -1,0 +1,6 @@
+<ul>
+  <% @recipes.each_with_index do |url, i| %>
+    <li><%= url %>: <%= @times[i] %></li>
+  <% end %>
+</ul>
+<p><%= @total %>
