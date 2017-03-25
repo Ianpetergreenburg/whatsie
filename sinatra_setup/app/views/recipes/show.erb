@@ -1,6 +1,4 @@
-<% @recipes = @recipes["response"]["docs"] %>
-<% @recipes = [@recipes[0]] %>
-<% @recipes.each do |doc| %>
+<% @recipes["response"]["docs"].each do |doc| %>
   <% url = doc["web_url"] %>
   <% if url_exist?(url) %>
     <div class="recipe">
@@ -21,11 +19,9 @@
       <h3>Prep</h3>
       <% preparation = scrape_this(url) %>
       <h4>Instructions</h4>
-      <% instructions = scrape_ny_instructions(preparation) %>
-      <%= instructions.to_s.html_safe %>
+      <%= instructions = scrape_ny_instructions(preparation) %>
       <h4>Ingredients</h4>
-      <% ingredients = scrape_ny_ingredients(preparation) %>
-      <%= ingredients.to_s.html_safe %>
+      <%= ingredients = scrape_ny_ingredients(preparation) %>
 
       <form class='save-recipe-form' action='/recipes' method='post'>
         <input type='hidden' name='recipe[url]' value="<%= url %>">

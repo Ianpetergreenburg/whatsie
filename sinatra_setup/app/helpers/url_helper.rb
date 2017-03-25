@@ -1,4 +1,6 @@
-module UrlHelper
+require "net/http"
+
+helpers do
   def url_exist?(url_string)
     url = URI.parse(url_string)
     req = Net::HTTP.new(url.host, url.port)

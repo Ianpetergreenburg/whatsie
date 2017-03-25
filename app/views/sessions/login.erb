@@ -1,0 +1,17 @@
+
+<div class='recipe'>
+  <h1 class='create-account-header'>Login</h1>
+
+  <% unless @user && !@user.valid? %>
+  <ul class='errors'>
+    <li>Password and username do not match</li>
+  </ul>
+  <% end %>
+  <%= form_for :session, url: login_path, class: 'form-group' do |t| %>
+    <%= t.label 'Username' %>
+    <%= t.text_field :username, placeholder: 'Username', value: @user.try(:username), class: 'form-control' %>
+    <%= t.label 'Password' %>
+    <%= t.password_field :password, placeholder: 'Password', class: 'form-control' %>
+    <%= t.submit value='Login', class: 'btn btn-success btn-space' %>
+  <% end %>
+</div>

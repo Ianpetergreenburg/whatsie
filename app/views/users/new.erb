@@ -1,10 +1,16 @@
-<h1>Register</h1>
+<div class='container'>
+  <div class='recipe'>
+    <h1 class='create-account-header'>Register for Whatsie</h1>
+    <%= render partial: 'partials/errors', locals: {object: @user} %>
 
-<%= erb :'/partials/_errors', locals: {object: @user} %>
-
-<form action='/users' method='post'>
-  <input type='text' name='user[email]' placeholder='Email' value="<%= @user.try(:email) %>">
-  <input type='text' name='user[username]' placeholder='Username' value="<%= @user.try(:username) %>">
-  <input type='password' name='user[password]' placeholder='Password'>
-  <input type='submit' value='Register'>
-</form>
+    <%= form_for @user , html: {:class => "form-group new_user"} do |t| %>
+      <%= t.label "Email" %>
+      <%= t.text_field :email, placeholder: 'Email', :class => "form-control" %>
+      <%= t.label "Username" %>
+      <%= t.text_field :username, placeholder: 'Username', :class => "form-control"  %>
+      <%= t.label "Password" %>
+      <%= t.password_field :password, placeholder: 'Password', :class => "form-control"  %>
+      <%= t.submit value='Register', class: 'btn btn-success btn-space' %>
+    <% end %>
+  </div>
+</div>
