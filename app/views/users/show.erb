@@ -1,6 +1,6 @@
 <div class="profile"></div>
 
-<% if session_user && session_user_id.to_s == @profile_id %>
+<% if session_user && current_user_id.to_s == @profile_id %>
   <h1>Welcome, <%= @user.username %></h1>
   <h3> Your Recipes! </h3>
 <% else %>
