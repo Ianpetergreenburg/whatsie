@@ -1,0 +1,15 @@
+<div class="recipe">
+    <h2><%= recipe.name %></h2>
+    <p> recipe source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
+    <% if recipe.image_url %>
+      <img class="recipe-image" src="<%= recipe.image_url %>">
+    <% end %>
+    <h3>Prep</h3>
+    <h4>Instructions</h4>
+    <%= recipe.instructions.html_safe %>
+    <h4>Ingredients</h4>
+    <%= recipe.ingredients.html_safe %>
+    <% if current_user %>
+        <%= render partial: 'partials/new_recipe', locals: {recipe: Recipe.new, url: recipe.url, img_url: recipe.image_url, instructions: recipe.instructions, ingredients: recipe.ingredients, name: recipe.name} %>
+    <% end %>
+</div>

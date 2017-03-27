@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  root to: 'recipes#show'
+  root to: 'recipes#index'
+  get '/recipes/random', to: 'recipes#random'
 
   resources :recipes
   resources :users

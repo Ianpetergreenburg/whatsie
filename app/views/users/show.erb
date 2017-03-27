@@ -1,6 +1,6 @@
 <div class="profile"></div>
 
-<% if session_user && current_user_id.to_s == @profile_id %>
+<% if current_user && current_user_id.to_s == @profile_id %>
   <h1>Welcome, <%= @user.username %></h1>
   <h3> Your Recipes! </h3>
 <% else %>
@@ -16,18 +16,11 @@
     <% end %>
     <h3>Prep</h3>
     <h4>Instructions</h4>
-    <%= recipe.instructions %>
+    <%= recipe.instructions.html_safe %>
     <h4>Ingredients</h4>
-    <%= recipe.ingredients %>
-    <% if session_user && session_user_id.to_s != @profile_id %>
-      <form class='save-recipe-form' action='/recipes' method='post'>
-        <input type='hidden' name='recipe[url]' value="<%= recipe.url %>">
-        <input type='hidden' name='recipe[image_url]' value="<%= recipe.image_url %>">
-        <input type='hidden' name='recipe[instructions]' value="<%= recipe.instructions %>">
-        <input type='hidden' name='recipe[ingredients]' value="<%= recipe.ingredients %>">
-        <input type='hidden' name='recipe[name]' value="<%= recipe.name %>">
-        <input type='submit' value='Save to Recipe Book'>
-      </form>
+    <%= recipe.ingredients.html_safe %>
+    <% if current_user && current_user_id.to_s != @profile_id %>
+      <%= render partial: 'partials/new_recipe', locals: {recipe: Recipe.new, url: recipe.url, img_url: recipe.image_url, instructions: recipe.instructions, ingredients: recipe.ingredients, name: recipe.name} %>
     <% end %>
   </div>
 <% end %>

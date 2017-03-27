@@ -1,7 +1,7 @@
 <nav class='nav-bar'>
 
-  <% if session_user %>
-    <a href='/users/<%= current_user_id %>'><%= session_user.username %></a>
+  <% if current_user %>
+    <a href='/users/<%= current_user_id %>'><%= current_user.username %></a>
     <a href='/logout'>Logout</a>
     <a class="right" href="/recipes/random">find new recipes</a>
   <% else %>

@@ -1,0 +1,5 @@
+<div id="home">
+  <% Recipe.limit(10).order("RANDOM()").each do |recipe| %>
+    <%= render partial: 'partials/recipe', locals: {recipe: recipe} %>
+  <% end %>
+</div>

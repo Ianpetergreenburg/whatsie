@@ -7,7 +7,7 @@
       <h2><%= name = doc["headline"]["name"] %></h2>
 
       <p>url: <%= url %> </p>
-      <p>lead paragraph: <%= doc["lead_paragraph"] %></p>
+      <p>lead paragraph: <%= doc["lead_paragraph"].html_safe %></p>
 
 
       <% img_url = '' %>
@@ -26,14 +26,8 @@
       <h4>Ingredients</h4>
       <% ingredients = scrape_ny_ingredients(preparation) %>
       <%= ingredients.to_s.html_safe %>
-
-      <%= form_for :recipe, url: new_recipe_path, class: "save-recipe-form" do |t| %>
-        <% t.text_field :url, value: url %>
-        <% t.text_field :image_url, value: img_url %>
-        <% t.text_field :instructions, value: noko_to_s(instructions) %>
-        <% t.text_field :ingredients, value: noko_to_s(ingredients) %>
-        <% t.text_field :name, value:  name %>
-        <%= t.submit 'Save To Recipe Book' %>
+      <% if current_user %>
+        <%= render partial: 'partials/new_recipe', locals: {recipe: @recipe, url: url, img_url: img_url, instructions: noko_to_s(instructions), ingredients: noko_to_s(ingredients), name: name} %>
       <% end %>
     </div>
   <% end %>

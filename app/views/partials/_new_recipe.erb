@@ -1,0 +1,9 @@
+<%= form_for Recipe.new, url: '/recipes', html: {class: "save-recipe-form", remote: true} do |t| %>
+  <%= t.hidden_field :url, value: url %>
+  <%= t.hidden_field :image_url, value: img_url %>
+  <%= t.hidden_field :instructions, value: instructions %>
+  <%= t.hidden_field :ingredients, value: ingredients %>
+  <%= t.hidden_field :name, value:  name %>
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token -%>
+  <%= t.submit 'Save To Recipe Book' %>
+<% end %>
