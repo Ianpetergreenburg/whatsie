@@ -12,7 +12,6 @@ class RecipeBooksController < ApplicationController
           format.json { render json: { message: 'Recipe Added!'} }
         end
       else
-        p'de;llllleleltleltleteeet'
         RecipeBook.find_by(recipe_book_params).destroy
         respond_to do |format|
           format.json { render json: { message: 'Recipe Removed!'} }
