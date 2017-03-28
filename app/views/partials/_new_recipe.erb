@@ -1,4 +1,4 @@
-<%= form_for Recipe.new, url: '/recipes', html: {class: "save-recipe-form", remote: true} do |t| %>
+<%= form_for Recipe.new, url: '/recipes', html: {class: "save-recipe", remote: true} do |t| %>
   <%= t.hidden_field :url, value: url %>
   <%= t.hidden_field :image_url, value: img_url %>
   <%= t.hidden_field :instructions, value: instructions %>

@@ -1,6 +1,5 @@
 class RecipesController < ApplicationController
   def index
-
   end
 
   def random
@@ -9,7 +8,6 @@ class RecipesController < ApplicationController
   end
 
   def create
-    p '!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!'
   	@recipe = Recipe.where(url: recipe_params[:url]).first_or_create(recipe_params)
   	if @recipe.valid?
       if helpers.current_user.recipes.include? @recipe

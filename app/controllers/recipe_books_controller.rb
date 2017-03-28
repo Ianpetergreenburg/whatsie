@@ -4,22 +4,25 @@ class RecipeBooksController < ApplicationController
       respond_to do |format|
         format.json { render json: { message: 'Must Be Logged In To Save A Recipe'} }
       end
-    end
-
-    @recipe = Recipe.find_by_id(params[:recipe_book][:recipe_id])
-    @recipe_book = RecipeBook.find_by(recipe_id: @recipe.id, user_id: current_user_id)
-    if @recipe_book
-      p'de;llllleleltleltleteeet'
-      @recipe_book.destroy
-      respond_to do |format|
-        format.json { render json: { message: 'Removed!'} }
-      end
     else
-      p 'addddddddddddddddddd'
-      RecipeBook.create(recipe_id: @recipe.id, user_id: current_user_id)
-      respond_to do |format|
-        format.json { render json: { message: 'Recipe Added!'} }
+      @recipe_book = RecipeBook.new(recipe_book_params)
+      if @recipe_book.valid?
+        @recipe_book.save
+        respond_to do |format|
+          format.json { render json: { message: 'Recipe Added!'} }
+        end
+      else
+        p'de;llllleleltleltleteeet'
+        RecipeBook.find_by(recipe_book_params).destroy
+        respond_to do |format|
+          format.json { render json: { message: 'Recipe Removed!'} }
+        end
       end
     end
+  end
+
+  private
+  def recipe_book_params
+    params.require(:recipe_book).permit(:recipe_id, :user_id)
   end
 end
