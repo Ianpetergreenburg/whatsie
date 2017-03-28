@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   resources :recipes
   resources :users
+  resources :recipe_books, only: [:create, :destroy]
   get '/login', to: 'sessions#login_show'
   post "/login" => "sessions#login"
   get '/logout' => 'sessions#logout'
