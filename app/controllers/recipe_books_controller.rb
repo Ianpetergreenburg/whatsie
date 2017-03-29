@@ -6,14 +6,12 @@ class RecipeBooksController < ApplicationController
       end
     else
       @recipe_book = RecipeBook.new(recipe_book_params)
-      if @recipe_book.valid?
-        @recipe_book.save
-        respond_to do |format|
+      respond_to do |format|
+        if @recipe_book.valid?
+          @recipe_book.save
           format.json { render json: { message: 'Recipe Added!'} }
-        end
-      else
-        RecipeBook.find_by(recipe_book_params).destroy
-        respond_to do |format|
+        else
+          RecipeBook.find_by(recipe_book_params).destroy
           format.json { render json: { message: 'Recipe Removed!'} }
         end
       end

@@ -1,5 +1,10 @@
+
+
 class RecipesController < ApplicationController
   def index
+    100.times do |i|
+      UrlLoaderJob.perform_later('https://cooking.nytimes.com/recipes/' + i.to_s, 'nyt', i)
+    end
   end
 
   def random

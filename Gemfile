@@ -24,6 +24,8 @@ gem 'dotenv-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
+gem 'sucker_punch', '~> 2.0'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'httparty'

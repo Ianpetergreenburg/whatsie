@@ -1,7 +1,11 @@
-<% if current_user.recipes.include? recipe %>
-  <% button_state = 'Saved!' %>
-<% else %>
-  <% button_state = 'Save To Recipe Book' %>
-<% end %>
+<% if current_user%>
+  <% if current_user.recipes.include? recipe %>
+    <% button_state = 'Saved!' %>
+    <% button_class = 'btn-success' %>
+  <% else %>
+    <% button_state = 'Save To Recipe Book' %>
+    <% button_class = 'btn-primary' %>
+  <% end %>
 
-<%= link_to 'Save', recipe_books_path, {class: 'save-recipe-btn btn btn-lg btn-success', id: "#{recipe.id} #{current_user_id}"} %>
+  <%= link_to button_state, recipe_books_path, {class: "save-recipe-btn btn #{button_class}", id: "#{recipe.id} #{current_user_id}"} %>
+<% end %>
