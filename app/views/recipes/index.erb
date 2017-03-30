@@ -1,5 +1,5 @@
 <div id="home">
-  <% Recipe.limit(10).each do |recipe| %>
+  <% Recipe.order("id desc").limit(5).each do |recipe| %>
     <%= render partial: 'partials/user_recipe', locals: {recipe: recipe} %>
   <% end %>
 </div>

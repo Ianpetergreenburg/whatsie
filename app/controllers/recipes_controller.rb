@@ -8,6 +8,9 @@ class RecipesController < ApplicationController
   end
 
   def random
+    RecipeUrl.next_to_scrape(100).each do |recipe_url|
+      NytScraperJob.perform_later(recipe_url)
+    end
     @recipes = Recipe.newyorktimes(rand(119).to_s)
     @recipe = Recipe.new
   end
