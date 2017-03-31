@@ -27,3 +27,7 @@ body, html, main {
 .errors {
   color: #ff3d3d;
 }
+
+.header-text {
+  text-align: center;
+}

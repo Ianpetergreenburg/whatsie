@@ -8,6 +8,6 @@
   <h3> <%= @user.username %>'s Saved Recipes! </h3>
 <% end %>
 <% @user.recipes.each do |recipe| %>
-  <%= render partial: 'partials/user_recipe', locals: {recipe: recipe} %>
+  <%= render partial: 'partials/recipe', locals: {recipe: recipe} %>
 <% end %>
 

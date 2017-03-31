@@ -1,5 +1,6 @@
 <div id="home">
-  <% Recipe.order("id desc").limit(5).each do |recipe| %>
-    <%= render partial: 'partials/user_recipe', locals: {recipe: recipe} %>
+  <h2 class='header-text'>Recent Recipes</h2>
+  <% @recipes.each do |recipe| %>
+    <%= render partial: 'partials/recipe', locals: {recipe: recipe} %>
   <% end %>
 </div>
