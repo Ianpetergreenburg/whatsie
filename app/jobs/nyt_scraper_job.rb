@@ -6,6 +6,13 @@ class NytScraperJob < ApplicationJob
     recipe = NytRecipeScraperService.new(recipe_url.url)
     @recipe = Recipe.create(recipe.get_recipe)
     recipe_url.update(scraped: true)
-    ActionCable.server.broadcast 'room_channel', @recipe.attributes
+    p @recipe.attributes
+    ActionCable.server.broadcast 'random_channel', message: render_recipe(@recipe)
+  end
+
+  private
+
+  def render_recipe(recipe)
+    ApplicationController.renderer.render(partial: 'partials/recipe_card', locals: { recipe: recipe })
   end
 end

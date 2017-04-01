@@ -1,6 +1,8 @@
 <div id="home">
   <h2 class='header-text'>Random Recipes</h2>
-  <% @recipes.each do |recipe| %>
-    <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
-  <% end %>
+  <div class='recipe-cards-container random container-fluid'>
+    <% @recipes.each do |recipe| %>
+      <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
+    <% end %>
+  </div>
 </div>
