@@ -1,1 +1,1 @@
-<h1> some recipe called <%= @recipe.name %> </h1>
+<%= render partial: 'partials/recipe', locals: {recipe: @recipe} %>

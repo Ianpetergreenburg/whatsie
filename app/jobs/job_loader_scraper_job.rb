@@ -1,4 +1,4 @@
-class JobLoaderScraperJob
+class JobLoaderScraperJob < ApplicationJob
   self.queue_adapter = :sucker_punch
 
   def perform

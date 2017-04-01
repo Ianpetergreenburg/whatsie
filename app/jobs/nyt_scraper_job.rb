@@ -4,7 +4,8 @@ class NytScraperJob < ApplicationJob
 
   def perform(recipe_url)
     recipe = NytRecipeScraperService.new(recipe_url.url)
-    Recipe.create(recipe.get_recipe)
+    @recipe = Recipe.create(recipe.get_recipe)
     recipe_url.update(scraped: true)
+    ActionCable.server.broadcast 'room_channel', @recipe.attributes
   end
 end

@@ -11,6 +11,10 @@ class RecipesController < ApplicationController
     @recipes = Recipe.order("Random()").limit(20)
   end
 
+  def show
+    @recipe = Recipe.find_by_id(params[:id])
+  end
+
   def create
   	@recipe = Recipe.where(url: recipe_params[:url]).first_or_create(recipe_params)
     respond_to do |format|

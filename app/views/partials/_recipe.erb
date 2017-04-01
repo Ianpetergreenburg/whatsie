@@ -1,5 +1,6 @@
 <div class="recipe">
-  <h2><%= recipe.name %></h2>
+  <h2><%= link_to recipe.name, recipe_path(recipe) %></h2>
+
   <p> recipe source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
   <% if recipe.image_url %>
     <img class="recipe-image" src="<%= recipe.image_url %>">

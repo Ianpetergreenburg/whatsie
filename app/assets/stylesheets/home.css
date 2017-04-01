@@ -13,7 +13,6 @@ body, html, main {
   font-family: 'Open Sans', sans-serif;
   background: #fcf88a;
   height: 100%;
-  min-width: 450px;
 }
 
 .create-account-header {
@@ -30,4 +29,12 @@ body, html, main {
 
 .header-text {
   text-align: center;
+}
+
+.content {
+  margin-top: 120px;
+}
+
+.no-margin {
+  margin: 0;
 }
