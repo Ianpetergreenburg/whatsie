@@ -1,0 +1,40 @@
+.top-line {
+  font-size: 50px;
+  margin: 0;
+}
+
+.bottom-line {
+  margin: 0;
+  margin-top: -10px;
+  font-size: 15px;
+}
+
+body, html, main {
+  font-family: 'Open Sans', sans-serif;
+  background: #fcf88a;
+  height: 100%;
+}
+
+.create-account-header {
+  text-align: center;
+}
+
+.btn-space {
+  margin-top: 10px;
+}
+
+.errors {
+  color: #ff3d3d;
+}
+
+.header-text {
+  text-align: center;
+}
+
+.content {
+  margin-top: 120px;
+}
+
+.no-margin {
+  margin: 0;
+}

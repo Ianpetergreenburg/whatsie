@@ -1,0 +1,16 @@
+<div class="col-md-3">
+  <div class='recipe-card'>
+    <div class='recipe-card-title'>
+      <h2 class='no-margin'><%= link_to recipe.name, recipe_path(recipe) %></h2>
+    </div>
+    <p> Recipe Source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
+    <% if recipe.image_url.length > 0 %>
+      <img class="recipe-image" src="<%= recipe.image_url %>">
+    <% else %>
+    <div class='dinner-icon'>
+      <img class="recipe-card-image" src="/assets/dinner_icon.png">
+    </div>
+    <% end %>
+    <%= render partial: 'partials/save_recipe', locals: {recipe: recipe} %>
+  </div>
+</div>

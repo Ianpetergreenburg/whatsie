@@ -24,7 +24,7 @@ class Recipe < ActiveRecord::Base
 
   def self.scrape_for_recipe(url)
     doc = Nokogiri::HTML(open(url))
-    doc.css('.recipe-instructions')
+    #doc.css('.recipe-instructions')
   end
 
   def self.scrape_ingredients(noko_doc)

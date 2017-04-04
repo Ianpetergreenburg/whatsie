@@ -1,17 +1,30 @@
-helpers do
-  def session_user_id
+module SessionHelper
+
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
+  end
+
+  def current_user_id
     session[:user_id]
   end
 
-  def session_user
-    User.find_by_id(session_user_id)
+  def logged_in?
+    current_user
   end
 
-  def session_logout
-    session[:user_id] = nil
+  def current_user_admin
+    return false unless current_user
+    current_user.admin?
   end
 
-  def session_login(user_id)
-    session[:user_id] = user_id
+
+  def log_in(user)
+    session[:user_id] = user.id
   end
+
+  def log_out
+    session.delete(:user_id)
+    current_user = nil
+  end
+
 end
