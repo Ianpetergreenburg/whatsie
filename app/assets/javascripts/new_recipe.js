@@ -4,7 +4,7 @@ $(document).ready(function() {
     headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
   });
 
-  $('.save-recipe-btn').click(function(event){
+  $('.recipe-cards-container').on('click', '.save-recipe-btn', function(event){
     event.preventDefault();
     var $this = $(this)
 

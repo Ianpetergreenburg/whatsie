@@ -1,8 +1,12 @@
 <div id="home">
   <h2 class='header-text'>Random Recipes</h2>
-  <div class='recipe-cards-container random container-fluid'>
+  <div class='recipe-cards-container container-fluid'>
     <% @recipes.each do |recipe| %>
       <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
     <% end %>
   </div>
+  <div class='random'></div>
 </div>
+<script>
+  var currentUserId = <%==  current_user_id %>
+</script>

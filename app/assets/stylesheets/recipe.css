@@ -67,3 +67,24 @@
     width: 90%;
   }
 }
+
+.random-recipe-card {
+  transition: all 0.7s ease-out;
+  padding: 0px;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  margin-bottom: 0px;
+  border: solid 4px #0083ff;
+  border-radius: 10px;
+  background-color: #8aebfc;
+  box-shadow: 2px 2px 3px #888888;
+}
+
+.show {
+  margin-bottom: 30px;
+  padding: 10px;
+  height: auto;
+  width: auto;
+  opacity: 1;
+}
