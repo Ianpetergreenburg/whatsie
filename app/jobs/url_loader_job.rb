@@ -1,6 +1,6 @@
 class UrlLoaderJob < ApplicationJob
   include UrlHelper
-  self.queue_adapter = :sucker_punch
+  self.queue_adapter = :sidekiq
   queue_as :low_priority
 
   def perform(url, source, recipe_id)

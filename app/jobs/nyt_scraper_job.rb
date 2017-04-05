@@ -1,6 +1,6 @@
 class NytScraperJob < ApplicationJob
   include ScrapeHelper
-  self.queue_adapter = :sucker_punch
+  self.queue_adapter = :sidekiq
   queue_as :high_priority
 
   def perform(recipe_url)

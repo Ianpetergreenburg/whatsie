@@ -16,7 +16,7 @@ function checkRandom(){
     setTimeout(function(){
       $('.recipe-cards-container div').first().addClass('col-md-3')
       $('.recipe-cards-container div div').first().addClass('show')
-    }, 10)
+    }, 1000)
   }
   setTimeout(function() { checkRandom(); } ,3000)
 }
