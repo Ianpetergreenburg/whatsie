@@ -8,7 +8,7 @@
       <img class="recipe-image" src="<%= recipe.image_url %>">
     <% else %>
     <div class='dinner-icon'>
-      <img class="recipe-card-image" src="/assets/dinner_icon.png">
+      <%= image_tag "dinner_icon.png", class:"recipe-card-image" %>
     </div>
     <% end %>
     <%= link_to 'Save To Recipe Book', recipe_books_path, {class: "save-recipe-btn btn btn-primary", id: "#{recipe.id} #{current_user_id}"} %>
