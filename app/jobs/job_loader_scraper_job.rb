@@ -3,7 +3,7 @@ class JobLoaderScraperJob < ApplicationJob
   queue_as :high_priority
 
   def perform
-    RecipeUrl.next_to_scrape(1).each do |recipe_url|
+    RecipeUrl.next_to_scrape(10).each do |recipe_url|
       NytScraperJob.perform_later(recipe_url)
     end
   end
