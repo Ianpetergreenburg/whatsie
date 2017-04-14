@@ -8,7 +8,7 @@
       <img class="recipe-image" src="<%= recipe.image_url %>">
     <% else %>
     <div class='dinner-icon'>
-      <img class="recipe-card-image" src="/assets/dinner_icon.png">
+      <%= image_tag "dinner_icon.png", class:"recipe-card-image" %>
     </div>
     <% end %>
     <%= render partial: 'partials/save_recipe', locals: {recipe: recipe} %>
