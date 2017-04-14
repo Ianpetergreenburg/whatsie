@@ -4,7 +4,8 @@ class JobLoaderStarterJob < ApplicationJob
 
     def perform
       1.times do |i|
-        i += RecipeUrl.last.recipe_id
+        i++
+        i += RecipeUrl.last.recipe_id if RecipeUrl.count > 0
         UrlLoaderJob.perform_later('https://cooking.nytimes.com/recipes/' + i.to_s, 'nyt', i)
       end
     end
