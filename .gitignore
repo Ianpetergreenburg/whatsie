@@ -17,4 +17,5 @@
 .byebug_history
 
 #redis dump file
-dump.rdb
+/dump.rdb
+/.env
