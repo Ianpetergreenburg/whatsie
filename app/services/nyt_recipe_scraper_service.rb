@@ -2,12 +2,16 @@ require 'json'
 require 'httparty'
 require 'open-uri'
 require 'nokogiri'
+require 'nori'
 
 class NytRecipeScraperService
   attr_reader :doc, :recipe_url
   def initialize(recipe_url)
-    @recipe_url = recipe_url
     @doc = NytRecipeScraperService.scrape_for_recipe recipe_url
+    @recipe_url = recipe_url
+    create_recipe
+    @recipe.load_ingredients ingredients
+    return @recipe
   end
 
   def get_recipe
@@ -15,7 +19,6 @@ class NytRecipeScraperService
       name: name,
       url: @recipe_url,
       instructions: instructions,
-      ingredients: ingredients,
       image_url: image_url
     }
   end
@@ -35,6 +38,9 @@ class NytRecipeScraperService
   end
 
   private
+  def create_recipe
+    @recipe = Recipe.create(get_recipe)
+  end
 
   def name
     @doc.at_css('.recipe-title').text.gsub("\n", '').strip
@@ -49,14 +55,23 @@ class NytRecipeScraperService
     end
   end
 
+
   def ingredients
     doc = @doc.css('.recipe-ingredients')
     nutrition_facts = doc.at_css('div.nutrition-container')
     if nutrition_facts
       nutrition_facts.parent.remove
     end
+    ingredients = doc.css('li').map {|li| li.text.gsub(/\\n/, ' ').gsub(/\s+/, ' ').strip}
+    ingredients.map! do |ing|
+      begin
+        Ingreedy.parse ing
+      rescue
+        ing
+      end
+    end
 
-    doc
+    ingredients
   end
 
   def instructions

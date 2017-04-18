@@ -2,5 +2,7 @@ class RecipeIngredient < ActiveRecord::Base
   belongs_to :recipe
   belongs_to :ingredient
 
-  validates_presence_of :unit, :amount
+  def to_s
+    "#{amount} #{unit} #{ingredient.name}".strip
+  end
 end

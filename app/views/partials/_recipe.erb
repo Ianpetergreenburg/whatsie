@@ -9,7 +9,11 @@
   <h4>Instructions</h4>
   <%= recipe.instructions.html_safe %>
   <h4>Ingredients</h4>
-  <%= recipe.ingredients.html_safe %>
+  <ul>
+    <% recipe.ingredients.each do |recipe_ingredient| %>
+      <li><%= recipe_ingredient %></li>
+    <% end %>
+  </ul>
   <%= render partial: 'partials/save_recipe', locals: {recipe: recipe} %>
 </div>
 

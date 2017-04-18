@@ -4,12 +4,11 @@ class NytScraperJob < ApplicationJob
   queue_as :high_priority
 
   def perform(recipe_url)
-    recipe = NytRecipeScraperService.new(recipe_url.url)
-    @recipe = Recipe.create(recipe.get_recipe)
+    NytRecipeScraperService.new(recipe_url.url)
     recipe_url.update(scraped: true)
-    if @recipe.valid?
+    # if @recipe.valid?
       ActionCable.server.broadcast 'random_channel', card: render_recipe(@recipe)
-    end
+    # end
   end
 
   private
