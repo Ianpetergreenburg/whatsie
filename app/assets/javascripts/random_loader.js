@@ -3,14 +3,9 @@ $(document).ready(function(){
 })
 
 function checkRandom(){
-  var currentUserId = window.currentUserId
-
   if ($('.random').children().length > 0){
 
     var recipeToAdd = $('.random').children().last().remove()
-    var id = recipeToAdd.find('.save-recipe-btn').attr('id')
-
-    recipeToAdd.find('.save-recipe-btn').attr('id', id + currentUserId)
     $('.recipe-cards-container').prepend(recipeToAdd)
 
     setTimeout(function(){

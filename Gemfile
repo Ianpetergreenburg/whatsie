@@ -24,7 +24,7 @@ gem 'dotenv-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 
-gem 'sucker_punch', '~> 2.0'
+#job adapter
 gem 'sidekiq'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,6 +34,9 @@ gem 'httparty'
 gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
+
+#ingredient parser
+gem 'ingreedy'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

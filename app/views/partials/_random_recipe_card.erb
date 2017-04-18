@@ -11,6 +11,6 @@
       <%= image_tag "dinner_icon.png", class:"recipe-card-image" %>
     </div>
     <% end %>
-    <%= link_to 'Save To Recipe Book', recipe_books_path, {class: "save-recipe-btn btn btn-primary", id: "#{recipe.id} #{current_user_id}"} %>
+    <%= link_to 'Save To Recipe Book', recipe_books_path, {class: "save-recipe-btn btn btn-primary", id: "#{recipe.id}"} %>
   </div>
 </div>
