@@ -4,7 +4,7 @@ require 'open-uri'
 require 'nokogiri'
 
 class NytRecipeScraperService
-
+  attr_reader :doc, :recipe_url
   def initialize(recipe_url)
     @recipe_url = recipe_url
     @doc = NytRecipeScraperService.scrape_for_recipe recipe_url
@@ -55,6 +55,7 @@ class NytRecipeScraperService
     if nutrition_facts
       nutrition_facts.parent.remove
     end
+
     doc
   end
 

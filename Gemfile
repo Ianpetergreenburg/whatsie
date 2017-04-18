@@ -37,6 +37,10 @@ gem 'bcrypt', '~> 3.1.7'
 
 #ingredient parser
 gem 'ingreedy'
+gem 'nori'
+gem 'xml-to-hash', '~> 1.0', '>= 1.0.3'
+gem 'crack'
+gem 'paperclip'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

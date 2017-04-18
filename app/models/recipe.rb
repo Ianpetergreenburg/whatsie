@@ -6,9 +6,9 @@ require 'nokogiri'
 class Recipe < ActiveRecord::Base
   has_many :recipe_books
   has_many :users, through: :recipe_books
+  has_many :ingredients
 
   validates_presence_of :name
-  validates_presence_of :ingredients
   validates_presence_of :instructions
   validates_presence_of :url
 
