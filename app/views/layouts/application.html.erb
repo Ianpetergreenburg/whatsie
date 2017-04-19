@@ -15,8 +15,9 @@
     <%= favicon_link_tag 'Food-icon-color.ico' %>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+    </script>
+    <script>var at_recipe = false</script>
   </head>
 
   <body>
@@ -26,5 +27,8 @@
         <%= yield %>
       </div>
     </main>
+    <script>
+      if (at_recipe){$('body').css('background-color', '#8aebfc')}
+    </script>
   </body>
 </html>

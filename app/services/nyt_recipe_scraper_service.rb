@@ -5,21 +5,21 @@ require 'nokogiri'
 require 'nori'
 
 class NytRecipeScraperService
-  attr_reader :doc, :recipe_url
+  attr_reader :doc, :recipe_url, :recipe
   def initialize(recipe_url)
     @doc = NytRecipeScraperService.scrape_for_recipe recipe_url
     @recipe_url = recipe_url
-    create_recipe
+    @recipe = create_recipe
     @recipe.load_ingredients ingredients
-    return @recipe
+    @recipe.load_instructions instructions
   end
 
   def get_recipe
     return {
       name: name,
       url: @recipe_url,
-      instructions: instructions,
-      image_url: image_url
+      image_url: image_url,
+      source: 'New York Times Cooking'
     }
   end
 
@@ -39,7 +39,7 @@ class NytRecipeScraperService
 
   private
   def create_recipe
-    @recipe = Recipe.create(get_recipe)
+    Recipe.create(get_recipe)
   end
 
   def name
@@ -75,6 +75,7 @@ class NytRecipeScraperService
   end
 
   def instructions
-    @doc.css('.recipe-steps')
+    instructions = @doc.css('.recipe-steps')
+    instructions.css('li').map {|li| li.text.gsub(/\\n/, ' ').gsub(/\s+/, ' ').strip}
   end
 end
