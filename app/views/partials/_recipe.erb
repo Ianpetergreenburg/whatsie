@@ -2,7 +2,7 @@
   <div class='container'>
     <h2 class='recipe-header'><%= recipe.name %></h2>
 
-    <h4 class ='recipe-source'>Recipe Source: <a href="<%= recipe.url %>"><%= recipe.source %></a></h4>
+    <h4 class ='recipe-source'>Recipe Source: <a href="<%= recipe.url %>"><strong><%= recipe.source %></strong></a></h4>
     <% if recipe.image_url %>
       <img class="recipe-image" src="<%= recipe.image_url %>">
     <% end %>
