@@ -46,7 +46,7 @@ main {
 
 @media (max-width: 768px){
   .content {
-    margin-top: 1px;
+    margin-top: 90px;
     position: absolute;
   }
 }
