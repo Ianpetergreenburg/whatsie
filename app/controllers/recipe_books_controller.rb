@@ -5,7 +5,7 @@ class RecipeBooksController < ApplicationController
         format.json { render json: { message: 'Must Be Logged In To Save A Recipe'} }
       end
     else
-      @recipe_book = RecipeBook.new(recipe_book_params)
+      @recipe_book = RecipeBook.new(recipe_id: recipe_book_params[:recipe_id], user_id: current_user_id)
       respond_to do |format|
         if @recipe_book.valid?
           @recipe_book.save

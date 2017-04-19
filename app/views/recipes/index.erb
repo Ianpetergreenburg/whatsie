@@ -1,7 +1,10 @@
 <div id="home">
-  <h2 class='header-text'>Recent Recipes</h2>
+  <h2 class='header-text no-margin-top'>Recent Recipes</h2>
   <div class='recipe-cards-container container-fluid'>
-    <% @recipes.each do |recipe| %>
+    <% @recipes.each_with_index do |recipe, i| %>
+      <% if i%4 == 0 %>
+        <div class="clearfix visible-md-block visible-lg-block"></div>
+      <% end %>
       <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
     <% end %>
   </div>

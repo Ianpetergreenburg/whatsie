@@ -1,15 +1,31 @@
-<div class="recipe">
-  <h2><%= link_to recipe.name, recipe_path(recipe) %></h2>
+<div class="recipe-page">
+  <div class='container'>
+    <h2 class='recipe-header'><%= recipe.name %></h2>
 
-  <p> recipe source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
-  <% if recipe.image_url %>
-    <img class="recipe-image" src="<%= recipe.image_url %>">
-  <% end %>
-  <h3>Prep</h3>
-  <h4>Instructions</h4>
-  <%= recipe.instructions.html_safe %>
-  <h4>Ingredients</h4>
-  <%= recipe.ingredients.html_safe %>
-  <%= render partial: 'partials/save_recipe', locals: {recipe: recipe} %>
+    <h4 class ='recipe-source'>Recipe Source: <a href="<%= recipe.url %>"><%= recipe.source %></a></h4>
+    <% if recipe.image_url %>
+      <img class="recipe-image" src="<%= recipe.image_url %>">
+    <% end %>
+    <div class='prep-container container'>
+      <h3 id='prep-header'>Preperation</h3>
+      <div class='col-md-4 ingredients'>
+        <h4>Ingredients</h4>
+        <ul>
+          <% recipe.ingredients.each do |recipe_ingredient| %>
+            <li><%= recipe_ingredient %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class='col-md-8 instructions'>
+        <h4>Instructions</h4>
+        <ol>
+          <% recipe.instructions.each do |instruction| %>
+            <li><%= instruction.instruction %></li>
+          <% end %>
+        </ol>
+      </div>
+    </div>
+    <%= render partial: 'partials/save_recipe', locals: {recipe: recipe} %>
+  </div>
 </div>
 
