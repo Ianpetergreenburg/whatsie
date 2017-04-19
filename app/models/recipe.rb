@@ -13,9 +13,7 @@ class Recipe < ActiveRecord::Base
   validates_presence_of :url
 
   def ingredients
-    recipe_ingredients.sort_by{|ri| ri.order }.map do |recipe_ingredient|
-      recipe_ingredient
-    end
+    recipe_ingredients
   end
 
   def instructions

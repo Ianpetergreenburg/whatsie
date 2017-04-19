@@ -9,7 +9,7 @@ module SessionHelper
   end
 
   def logged_in?
-    current_user
+    current_user != nil
   end
 
   def current_user_admin
