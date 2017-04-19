@@ -6,37 +6,48 @@ require 'nokogiri'
 class Recipe < ActiveRecord::Base
   has_many :recipe_books
   has_many :users, through: :recipe_books
+  has_many :recipe_ingredients
+  has_many :recipe_instructions
 
   validates_presence_of :name
-  validates_presence_of :ingredients
-  validates_presence_of :instructions
   validates_presence_of :url
 
-  def self.newyorktimes(page_number)
-    url = ENV["API_NYTIMES"] + '?api-key=' + ENV["API_KEY_NYT"]
-
-    query_params = "&fq=document_type:(\"recipe\")" + '&page=' + page_number
-
-    response = HTTParty.get(url + query_params)
-    @result = JSON.parse(response.body)
-    @result
-  end
-
-  def self.scrape_for_recipe(url)
-    doc = Nokogiri::HTML(open(url))
-    #doc.css('.recipe-instructions')
-  end
-
-  def self.scrape_ingredients(noko_doc)
-    doc = noko_doc.css('.recipe-ingredients')
-    nutrition_facts = doc.at_css('div.nutrition-container')
-    if nutrition_facts
-      nutrition_facts.parent.remove
+  def ingredients
+    recipe_ingredients.sort_by{|ri| ri.order }.map do |recipe_ingredient|
+      recipe_ingredient
     end
-    doc
   end
 
-  def self.scrape_instructions(noko_doc)
-    noko_doc.css('.recipe-steps')
+  def instructions
+    recipe_instructions.sort_by{|ri| ri.order }.map do |recipe_instruction|
+      recipe_instruction
+    end
+  end
+
+  def load_ingredients(ingredients_to_load)
+    ingredients_to_load.each_with_index do |ingredient, order|
+      if ingredient.class ==  Ingreedy::Parser::Result
+        ingredient.amount = '' if ingredient.amount == 0
+        ingredient.unit = 'to taste' if ingredient.unit == :to_taste
+        ing = Ingredient.find_or_create_by(name: ingredient.ingredient)
+
+        RecipeIngredient.create(
+            recipe_id: id,
+            ingredient_id: ing.id,
+            amount: ingredient.amount.to_s,
+            unit: ingredient.unit.to_s,
+            order: order
+          )
+      else
+        ing = Ingredient.find_or_create_by(name: ingredient)
+        RecipeIngredient.create(recipe_id: id, ingredient_id: ing.id, order: order)
+      end
+    end
+  end
+
+  def load_instructions(instructions_to_load)
+    instructions_to_load.each_with_index do |instruction, order|
+      RecipeInstruction.create(recipe_id: id, instruction: instruction, order: order)
+    end
   end
 end

@@ -1,23 +1,25 @@
-<nav class='nav-bar'>
-  <div class='links'>
-    <div class='left'>
-      <% if current_user %>
-        <a href='/users/<%= current_user_id %>'><%= current_user.username %></a>
-        <a href='/logout'>Logout</a>
-      <% else %>
-        <a href='/login'>Login</a>
-        <a href='/users/new'>Register</a>
-      <% end %>
-      <a href='/'>Home</a>
+<nav class="navbar nav-bar navbar-static-top container-fluid" style="border-radius:0px;" >
+  <div class="container">
+    <ul class="nav nav-btn pull-left">
+      <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag "menu.png", class:'menu-btn'%><strong class="caret"></strong></a>
+          <ul class="dropdown-menu">
+            <% if current_user %>
+              <li><a href="/recipes/random">Find New Recipes</a></li>
+              <li><a href='/users/<%= current_user_id %>'>My Profile</a></li>
+              <li><a href='/logout'>Logout</a></li>
+            <% else %>
+              <li><a href='/login'><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <li><a href='/users/new'><span class="glyphicon glyphicon-save"></span> Register</a></li>
+            <% end %>
+        </ul>
+      </li>
+    </ul>
+    <div class='header'>
+      <a href='/' class='header-link'>
+        <p class="top-line">Whatsie?</p>
+        <p class="bottom-line">What Should I Eat?</p>
+      </a>
     </div>
-    <% if current_user %>
-      <a class="right" href="/recipes/random">find new recipes</a>
-    <% end %>
-  </div>
-  <div class='header'>
-    <a href='/' class='header-link'>
-      <p class="top-line">whatsie</p>
-      <p class="bottom-line">what should i eat?</p>
-    </a>
   </div>
 </nav>

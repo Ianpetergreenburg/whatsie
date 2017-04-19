@@ -4,17 +4,15 @@ $(document).ready(function() {
     headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
   });
 
-  $('.recipe-cards-container').on('click', '.save-recipe-btn', function(event){
+  $('body').on('click', '.save-recipe-btn', function(event){
     event.preventDefault();
     var $this = $(this)
 
-    var ids = $this.prop('id').split(' ')
-    var userId = ids[1]
-    var recipeId = ids[0]
+    var recipeId = $this.prop('id')
 
     $.post({
       url: '/recipe_books',
-      data: {recipe_book: {user_id: userId, recipe_id: recipeId}},
+      data: {recipe_book: {recipe_id: recipeId}},
       dataType: "JSON"
 
       }).then(function(data){

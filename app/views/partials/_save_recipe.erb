@@ -7,5 +7,5 @@
     <% button_class = 'btn-primary' %>
   <% end %>
 
-  <%= link_to button_state, recipe_books_path, {class: "save-recipe-btn btn #{button_class}", id: "#{recipe.id} #{current_user_id}"} %>
+  <%= link_to button_state, recipe_books_path, {class: "save-recipe-btn btn #{button_class}", id: "#{recipe.id}"} %>
 <% end %>

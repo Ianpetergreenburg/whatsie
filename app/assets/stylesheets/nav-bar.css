@@ -10,6 +10,28 @@
   z-index: 999;
 }
 
+@media (max-width: 768px){
+  .nav-bar{
+    height: 70px;
+  }
+}
+
+.menu-btn {
+  height: 80px;
+}
+@media (max-width: 768px) {
+  .nav-btn {
+    margin-left: -30px;
+  }
+  .menu-btn {
+    height: 50px;
+  }
+  .bottom-line {
+    display: none;
+  }
+}
+
+
 .right {
   position: absolute;
   right: 0;
@@ -28,17 +50,18 @@
   position: relative;
   display: inline-block;
   margin: 0 auto;
+  margin-left: -10%;
   padding: 5px;
   text-align: center;
   color: black;
   border-radius: 5px;
 }
-
-.header:active {
-  text-decoration: none;
-  box-shadow: inset 0px 2px 3px #888888;
+@media (min-width: 768px){
+  .header:active {
+    text-decoration: none;
+    box-shadow: inset 0px 2px 3px #888888;
+  }
 }
-
 .header-link:hover, :link, :visited {
   text-decoration: none;
   color: black;
