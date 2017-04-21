@@ -1,23 +1,43 @@
-<div class="recipe-page">
+<div class="recipe-page" id="<%= @recipe.id %>">
   <div class='container'>
-    <h2 class='recipe-header'><%= @recipe.name %></h2>
+    <h2 class='recipe-header'>Title: <span id='new-title-form' class='form-group'> <input type='text' id='recipe-title-new' class='form-control' value="<%= @recipe.try(:title)%>" placeholder="Your New Recipe Title"></span></h2>
 
-    <h4 class ='recipe-source'>Recipe Source: <a href="<%= @recipe.url %>"><strong><%= @recipe.source %></strong></a></h4>
+    <h4 class ='recipe-source'>Recipe Source: <span id='new-url-form' class='form-group'> <input type='text' id='recipe-url-new' class='form-control' value="<%= @recipe.try(:url)%>" placeholder="Recipe Url Source"></span></a></h4>
     <% if @recipe.image_url %>
       <img class="recipe-image" src="<%= @recipe.image_url %>">
     <% end %>
     <div class='prep-container container'>
       <h3 id='prep-header'>Preperation</h3>
       <div class='col-md-4 ingredients'>
-        <h4>Ingredients</h4>
-        <ul id='ingredients-list'>
+        <div id='ing-flash-container'></div>
+        <h4 class='ingredients-header'>Ingredients</h4>
+        <ul id='ingredients-list' class='edit-ingredients-list'>
           <% @recipe.ingredients.each do |recipe_ingredient| %>
-            <li><%= recipe_ingredient %></li>
+            <li class='edit-list-item'>
+              <table class='ingredients-list-table'>
+                <tr>
+                  <td class='ingredient-move'>
+                    <span class="ingredient-move" aria-hidden="true">☰</span>
+                  </td>
+                  <td class='ingredient-content'>
+                    <%= recipe_ingredient %>
+                  </td>
+                  <td class='edit-ingredient-cell align-top'>
+                    <span class='glyphicon glyphicon-pencil blue edit-ingredient'></span>
+                    <span class='delete-ingredient'>✖</span>
+                  </td>
+                </tr>
+              </table>
+            </li>
           <% end %>
         </ul>
+        <div class='form-group' id='addIngredientBox'>
+          <button class='btn btn-success' id='add-ingredient'>Add Ingredient</button>
+        </div>
       </div>
       <div class='col-md-8 instructions'>
-        <h4>Instructions <span class='save-instructions'>Save Instructions</span></h4>
+        <div id='ins-flash-container'></div>
+        <h4 class='instructions-header'>Instructions</h4>
         <ol id='instructions-list'>
           <% @recipe.instructions.each do |instruction| %>
             <li class='edit-list-item'>
@@ -29,7 +49,7 @@
                   <td class='instruction-content'>
                     <%= instruction.instruction %>
                   </td>
-                  <td class='edit-instruction-cell'>
+                  <td class='edit-instruction-cell align-top'>
                     <span class='glyphicon glyphicon-pencil blue edit-instruction'></span>
                     <span class='delete-instruction'>✖</span>
                   </td>
@@ -46,3 +66,4 @@
 
   </div>
 </div>
+<script>at_edit = true</script>

@@ -19,9 +19,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by_id(params[:id])
   end
 
-  def new
-    @recipe = Recipe.find(270)
-  end
 
   def update
     @recipe = Recipe.find_by(id: params[:id])
@@ -48,22 +45,30 @@ class RecipesController < ApplicationController
     end
   end
 
-  def create
-  	@recipe = Recipe.where(url: recipe_params[:url]).first_or_create(recipe_params)
-    respond_to do |format|
-      if @recipe.valid?
-        if helpers.current_user.recipes.include? @recipe
-          @recipe_book = RecipeBook.find_by(recipe_id: @recipe.id, user_id: current_user_id).destroy
-          format.json { render json: { message: 'Removed!'} }
-        else
-          RecipeBook.create(recipe_id: @recipe.id, user_id: current_user_id)
-          format.json { render json: { message: 'Added!'} }
-        end
-    	else
-          format.json { render json: { message: 'Invalid Recipe!'} }
-      end
-    end
+  def new
+    @recipe = Recipe.new
   end
+
+  def create
+    recipe_params
+  end
+
+  # def create
+  #   @recipe = Recipe.where(url: recipe_params[:url]).first_or_create(recipe_params)
+  #   respond_to do |format|
+  #     if @recipe.valid?
+  #       if helpers.current_user.recipes.include? @recipe
+  #         @recipe_book = RecipeBook.find_by(recipe_id: @recipe.id, user_id: current_user_id).destroy
+  #         format.json { render json: { message: 'Removed!'} }
+  #       else
+  #         RecipeBook.create(recipe_id: @recipe.id, user_id: current_user_id)
+  #         format.json { render json: { message: 'Added!'} }
+  #       end
+  #   	else
+  #         format.json { render json: { message: 'Invalid Recipe!'} }
+  #     end
+  #   end
+  # end
 
   private
   def recipe_params
