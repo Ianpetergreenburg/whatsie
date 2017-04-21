@@ -133,3 +133,8 @@
   width: auto;
   opacity: 1;
 }
+@media(max-width: 768px){
+  #instructions-list {
+    margin-left: -30px;
+  }
+}

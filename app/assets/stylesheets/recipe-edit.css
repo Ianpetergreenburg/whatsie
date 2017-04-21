@@ -101,6 +101,10 @@
   float: right;
 }
 
+#add-instruction, #add-ingredient {
+  margin-bottom: 30px;
+}
+
 .instructions-header, .ingredients-header {
   font-size: 20px;
   margin-bottom: 30px;
