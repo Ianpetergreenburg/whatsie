@@ -11,9 +11,18 @@ $(document).ready(function(){
 
   $('#addIngredientBox').on('click', '#create-ingredient', function(e){
     e.preventDefault();
-    var ingredient = $('#step-to-add').val()
+    var ingredient = $('#ingredient-to-add').val().trim()
+    if (ingredient == ''){
+      $('#ingredient-to-add').addClass('failed-enter')
+      return
+    }
     $('#ingredients-list').append(newIngredient(ingredient))
     replaceWithAddIngredient();
+  })
+
+  $('#addIngredientBox').on('focus', '#ingredient-to-add', function(e){
+    e.preventDefault()
+    $(e.target).removeClass('failed-enter')
   })
 
   $('#addIngredientBox').on('click', '#cancel-ingredient', function(e){
@@ -86,8 +95,8 @@ var newIngredient = function(ingredient) {
           ingredient +
         "</td>" +
         "<td class='edit-ingredient-cell align-top'>" +
-          "<span class='glyphicon glyphicon-pencil blue edit-ingredient'></span>" +
-          "<span class='delete-ingredient'>✖</span>" +
+          ingEditPencil +
+          ingXMark +
         "</td>" +
       "</tr>" +
     "</table>" +
@@ -100,10 +109,10 @@ var editIngredient = function(ingredient){
   "</textarea></div>"
 }
 
-var newIngredientField = "<textarea id='step-to-add' class='form-control ins-ins-edit'></textarea>" +
+var newIngredientField = "<textarea id='ingredient-to-add' class='form-control ins-ins-edit'></textarea>" +
         "<button class='btn btn-info btn-sm' id='create-ingredient'>Create Ingredient</button>" +
         "<button class='btn btn-danger btn-sm' id='cancel-ingredient'>Cancel</button>"
 var addIngredientButton = "<button class='btn btn-success' id='add-ingredient'>Add Ingredient</button>"
 var ingCheckMark = "<span class='glyphicon glyphicon-ok green update-ingredient'></span>"
-var ingEditPencil = "<span class='glyphicon glyphicon-pencil blue edit-ingredient'></span>"
-var ingXMark = "<span class='delete-ingredient'>✖</span>"
+var ingEditPencil = "<span class='glyphicon glyphicon-pencil blue edit-ingredient hoverable'></span>"
+var ingXMark = "<span class='delete-ingredient hoverable'>✖</span>"

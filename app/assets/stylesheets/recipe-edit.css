@@ -111,3 +111,17 @@
   padding-bottom: 5px;
   border-bottom-style: solid;
 }
+
+.edit-ingredient-cell {
+  width: 15px;
+}
+
+.hoverable {
+  opacity: 0;
+  /*visibility: hidden;*/
+}
+
+.failed-enter {
+  border-color: red;
+  background-color: pink;
+}

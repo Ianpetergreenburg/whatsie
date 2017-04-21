@@ -11,9 +11,18 @@ $(document).ready(function(){
 
   $('#addInstructionBox').on('click', '#create-instruction', function(e){
     e.preventDefault();
-    var instruction = $('#step-to-add').val()
+    var instruction = $('#step-to-add').val().trim()
+    if (instruction == ''){
+      $('#step-to-add').addClass('failed-enter')
+      return
+    }
     $('#instructions-list').append(newInstruction(instruction))
     replaceWithAdd();
+  })
+
+  $('#addInstructionBox').on('focus', '#step-to-add', function(e){
+    e.preventDefault()
+    $(e.target).removeClass('failed-enter')
   })
 
   $('#addInstructionBox').on('click', '#cancel-instruction', function(e){
@@ -84,8 +93,8 @@ var newInstruction = function(instruction) {
           instruction +
         "</td>" +
         "<td class='edit-instruction-cell align-top'>" +
-          "<span class='glyphicon glyphicon-pencil blue edit-instruction'></span>" +
-          "<span class='delete-instruction'>✖</span>" +
+          editPencil +
+          xMark +
         "</td>" +
       "</tr>" +
     "</table>" +
@@ -103,5 +112,5 @@ var newInstructionField = "<textarea id='step-to-add' class='form-control ins-in
         "<button class='btn btn-danger btn-sm' id='cancel-instruction'>Cancel</button>"
 var addStepButton = "<button class='btn btn-success' id='add-instruction'>Add Step</button>"
 var checkMark = "<span class='glyphicon glyphicon-ok green update-instruction'></span>"
-var editPencil = "<span class='glyphicon glyphicon-pencil blue edit-instruction'></span>"
-var xMark = "<span class='delete-instruction'>✖</span>"
+var editPencil = "<span class='glyphicon glyphicon-pencil blue edit-instruction hoverable'></span>"
+var xMark = "<span class='delete-instruction hoverable'>✖</span>"
