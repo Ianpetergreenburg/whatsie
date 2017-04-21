@@ -13,13 +13,13 @@ class Recipe < ActiveRecord::Base
   validates_presence_of :url
 
   def ingredients
-    recipe_ingredients
+    recipe_ingredients.sort_by do |recipe_ingredients|
+      recipe_ingredients.order
+    end
   end
 
   def instructions
-    recipe_instructions.sort_by{|ri| ri.order }.map do |recipe_instruction|
-      recipe_instruction
-    end
+    recipe_instructions.sort_by{|ri| ri.order }
   end
 
   def load_ingredients(ingredients_to_load)
@@ -42,7 +42,12 @@ class Recipe < ActiveRecord::Base
       end
     end
   end
-
+  def dump_instructions
+    self.recipe_instructions.destroy_all
+  end
+  def dump_ingredients
+    self.recipe_ingredients.destroy_all
+  end
   def load_instructions(instructions_to_load)
     instructions_to_load.each_with_index do |instruction, order|
       RecipeInstruction.create(recipe_id: id, instruction: instruction, order: order)

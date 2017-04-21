@@ -1,0 +1,48 @@
+<div class="recipe-page">
+  <div class='container'>
+    <h2 class='recipe-header'><%= @recipe.name %></h2>
+
+    <h4 class ='recipe-source'>Recipe Source: <a href="<%= @recipe.url %>"><strong><%= @recipe.source %></strong></a></h4>
+    <% if @recipe.image_url %>
+      <img class="recipe-image" src="<%= @recipe.image_url %>">
+    <% end %>
+    <div class='prep-container container'>
+      <h3 id='prep-header'>Preperation</h3>
+      <div class='col-md-4 ingredients'>
+        <h4>Ingredients</h4>
+        <ul id='ingredients-list'>
+          <% @recipe.ingredients.each do |recipe_ingredient| %>
+            <li><%= recipe_ingredient %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class='col-md-8 instructions'>
+        <h4>Instructions <span class='save-instructions'>Save Instructions</span></h4>
+        <ol id='instructions-list'>
+          <% @recipe.instructions.each do |instruction| %>
+            <li class='edit-list-item'>
+              <table class='list-table'>
+                <tr>
+                  <td class='instruction-move'>
+                    <span class="instruction-move" aria-hidden="true">☰</span>
+                  </td>
+                  <td class='instruction-content'>
+                    <%= instruction.instruction %>
+                  </td>
+                  <td class='edit-instruction-cell'>
+                    <span class='glyphicon glyphicon-pencil blue edit-instruction'></span>
+                    <span class='delete-instruction'>✖</span>
+                  </td>
+                </tr>
+              </table>
+            </li>
+          <% end %>
+        </ol>
+        <div class='form-group' id='addInstructionBox'>
+          <button class='btn btn-success' id='add-instruction'>Add Step</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

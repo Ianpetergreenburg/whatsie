@@ -15,6 +15,39 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by_id(params[:id])
   end
 
+  def edit
+    @recipe = Recipe.find_by_id(params[:id])
+  end
+
+  def new
+    @recipe = Recipe.find(270)
+  end
+
+  def update
+    @recipe = Recipe.find_by(id: params[:id])
+    if recipe_params['instructions']
+      instructions = JSON.parse(recipe_params['instructions'])
+      ins = []
+      instructions['length'].times do |i|
+        ins << instructions[i.to_s]
+      end
+      @recipe.dump_instructions
+      @recipe.load_instructions(ins)
+    end
+    if recipe_params['ingredients']
+      ingredients = JSON.parse(recipe_params['ingredients'])
+      ing = []
+      ingredients['length'].times do |i|
+        ing << ingredients[i.to_s]
+      end
+      @recipe.dump_ingredients
+      @recipe.load_ingredients(ing)
+    end
+    if recipe_params['name']
+      @recipe.update(name: recipe_params['name'])
+    end
+  end
+
   def create
   	@recipe = Recipe.where(url: recipe_params[:url]).first_or_create(recipe_params)
     respond_to do |format|
