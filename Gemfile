@@ -27,6 +27,12 @@ gem 'jquery-rails'
 #job adapter
 gem 'sidekiq'
 
+#js sortable list
+gem 'sortable-rails'
+
+#allow for association cloning
+gem 'deep_cloneable', '~> 2.2.2'
+
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'httparty'

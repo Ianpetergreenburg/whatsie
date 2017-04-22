@@ -6,7 +6,7 @@
 
     <%= javascript_include_tag 'application' %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Indie+Flower|Open+Sans:300,400|Overpass" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -17,7 +17,13 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js">
     </script>
-    <script>var at_recipe = false</script>
+
+    <!-- Latest Sortable -->
+    <script src="//rubaxa.github.io/Sortable/Sortable.js"></script>
+    <script>
+      var at_recipe = false;
+      var at_edit = false;
+    </script>
   </head>
 
   <body>
@@ -27,8 +33,12 @@
         <%= yield %>
       </div>
     </main>
-    <script>
-      if (at_recipe){$('body').css('background-color', '#8aebfc')}
-    </script>
+    <div class="panel-footer">Panel Footer</div>
+
+
   </body>
+
+  <script>
+    var signed_in = <%== logged_in?.to_json %>
+  </script>
 </html>

@@ -14,7 +14,7 @@ class RecipeIngredient < ActiveRecord::Base
 
   def rational_amount
     return '' if amount == nil || amount == ''
-    quotient.to_s + " " + remainder.to_s
+    (quotient.to_s + " " + remainder.to_s).strip
   end
 
   def quotient

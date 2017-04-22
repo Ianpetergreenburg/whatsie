@@ -1,0 +1,133 @@
+.recipe-header-edit {
+  font-family: 'Open Sans', sans-serif;
+  padding-bottom: 10px;
+  font-size:1.5em;
+}
+.ing-edit, .ins-edit{
+  margin-bottom: 10px;
+}
+
+.ing-amount-edit{
+  width: 40%;
+  display: inline-block;
+}
+
+.ing-unit-edit {
+  width: 50%;
+  display: inline-block;
+}
+
+.instruction-move, .ingredient-move {
+    font: bold 20px Sans-Serif;
+    color: #5F9EDF;
+    display: inline-block;
+    cursor: move;
+    cursor: -webkit-grabbing;
+    padding: 0 5px;
+}
+
+.align-top {
+  vertical-align: top;
+}
+
+.instruction-content {
+  padding: 0 15px 10px 15px;
+  width: 100%;
+}
+
+.ingredient-content {
+  padding: 0 15px 20px 15px;
+  width: 100%;
+}
+.edit-list-item{
+  margin-bottom: 20px;
+}
+
+.list-table {
+  margin-top: -25px;
+  margin-bottom: 10px;
+  padding: 15px 0;
+}
+
+.edit-ingredients-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.delete-instruction, .delete-ingredient {
+  cursor: pointer;
+  color: #c00;
+}
+
+.edit-instruction, .edit-ingredient {
+  cursor: pointer;
+}
+
+.edit-header {
+  float: right;
+  cursor: pointer;
+  vertical-align: bottom;
+}
+
+#recipe-title-edit{
+  display: inline-block;
+  width: 80%;
+  font-size: 30px;
+  padding-top: 10px;
+}
+
+.blue {
+  color: #0083FF;
+}
+
+.green {
+  color: #5cb85c;
+}
+
+.red {
+  color: #c00;
+}
+
+#editable-header {
+  float: right;
+}
+
+.update-title, .cancel-title {
+  cursor: pointer;
+}
+
+#save-instructions, #save-ingredients {
+  float: right;
+}
+
+#add-instruction, #add-ingredient {
+  margin-bottom: 30px;
+}
+
+.instructions-header, .ingredients-header {
+  font-size: 20px;
+  margin-bottom: 30px;
+  padding-bottom: 5px;
+  border-bottom-style: solid;
+}
+
+.edit-ingredient-cell {
+  width: 15px;
+}
+
+.hoverable {
+  opacity: 0;
+  /*visibility: hidden;*/
+}
+
+@media(max-width: 1024px) {
+  .hoverable {
+    opacity: 1;
+  }
+}
+
+.failed-enter {
+  border-color: red;
+  background-color: pink;
+}

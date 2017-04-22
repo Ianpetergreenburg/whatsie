@@ -15,21 +15,59 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by_id(params[:id])
   end
 
-  def create
-  	@recipe = Recipe.where(url: recipe_params[:url]).first_or_create(recipe_params)
-    respond_to do |format|
-      if @recipe.valid?
-        if helpers.current_user.recipes.include? @recipe
-          @recipe_book = RecipeBook.find_by(recipe_id: @recipe.id, user_id: current_user_id).destroy
-          format.json { render json: { message: 'Removed!'} }
-        else
-          RecipeBook.create(recipe_id: @recipe.id, user_id: current_user_id)
-          format.json { render json: { message: 'Added!'} }
-        end
-    	else
-          format.json { render json: { message: 'Invalid Recipe!'} }
-      end
+  def edit
+    @recipe = Recipe.find_by_id(params[:id])
+    if current_user && current_user_admin || current_user && current_user == @recipe.chef
+      render 'edit'
+    elsif current_user
+      @recipe = @recipe.clone(current_user)
+      redirect_to "/recipes/#{@recipe.id}/edit"
+    else
+      redirect_to '/'
     end
+  end
+
+
+  def update
+    @recipe = Recipe.find_by(id: params[:id])
+    if recipe_params['instructions']
+      instructions = JSON.parse(recipe_params['instructions'])
+      ins = []
+      instructions['length'].times do |i|
+        ins << instructions[i.to_s]
+      end
+      @recipe.dump_instructions
+      @recipe.load_instructions(ins)
+    end
+    if recipe_params['ingredients']
+      ingredients = JSON.parse(recipe_params['ingredients'])
+      ing = []
+      ingredients['length'].times do |i|
+        ing << ingredients[i.to_s]
+      end
+      @recipe.dump_ingredients
+      @recipe.load_ingredients(ing)
+    end
+    if recipe_params['name']
+      @recipe.update(name: recipe_params['name'])
+    end
+  end
+
+  def new
+    if current_user
+      @recipe = Recipe.new
+    else
+      redirect_to '/'
+    end
+  end
+
+  def create
+    if current_user && current_user_admin || current_user && current_user == @recipe.chef
+      render 'edit'
+    else
+      redirect_to '/'
+    end
+    recipe_params
   end
 
   private
