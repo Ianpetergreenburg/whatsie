@@ -25,9 +25,11 @@
         </ol>
       </div>
     </div>
+    <div class='button container'>
     <%= render partial: 'partials/save_recipe', locals: {recipe: recipe} %>
     <%= render partial: 'partials/edit_recipe', locals: {recipe: recipe} %>
-
+    <%= render partial: 'partials/delete_recipe', locals: {recipe: recipe} %>
+    </div>
   </div>
 </div>
 

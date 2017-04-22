@@ -1,6 +1,8 @@
 
 
 class RecipesController < ApplicationController
+  before_action :find_recipe, only: [:show, :edit, :destroy, :update]
+
   def index
     JobLoaderStarterJob.perform_later
     @recipes = Recipe.order("id desc").limit(20)
@@ -12,12 +14,10 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find_by_id(params[:id])
   end
 
   def edit
-    @recipe = Recipe.find_by_id(params[:id])
-    if current_user && current_user_admin || current_user && current_user == @recipe.chef
+    if can_edit? @recipe
       render 'edit'
     elsif current_user
       @recipe = @recipe.clone(current_user)
@@ -29,7 +29,6 @@ class RecipesController < ApplicationController
 
 
   def update
-    @recipe = Recipe.find_by(id: params[:id])
     if recipe_params['instructions']
       instructions = JSON.parse(recipe_params['instructions'])
       ins = []
@@ -62,15 +61,48 @@ class RecipesController < ApplicationController
   end
 
   def create
-    if current_user && current_user_admin || current_user && current_user == @recipe.chef
-      render 'edit'
+    if current_user
+      instructions = JSON.parse(recipe_params['instructions'])
+      ins = []
+      instructions['length'].times do |i|
+        ins << instructions[i.to_s]
+      end
+      ingredients = JSON.parse(recipe_params['ingredients'])
+      ing = []
+      ingredients['length'].times do |i|
+        ing << ingredients[i.to_s]
+      end
+
+      @recipe.create(recipe_params.except('ingredients', 'instructions'))
+      if @recipe.save
+        @recipe.chef = current_user
+        @recipe.load_instructions(ins)
+        @recipe.load_ingredients(ing)
+        redirect_to "/recipes/#{@recipe.id}"
+      else
+        render :new
+      end
+    end
+  end
+
+  def destroy
+    @recipe = Recipe.find_by_id(params[:id])
+    if can_delete? @recipe
+      @recipe.destroy
+      redirect_to user_path current_user
     else
       redirect_to '/'
     end
-    recipe_params
   end
 
   private
+  def find_recipe
+    @recipe = Recipe.find_by_id(params[:id])
+    unless @recipe
+      not_found
+    end
+  end
+
   def recipe_params
   	params.require(:recipe).permit(:url, :image_url, :instructions, :ingredients, :name)
   end

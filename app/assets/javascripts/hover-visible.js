@@ -22,10 +22,12 @@ $(document).ready(function(){
 })
 
 function show(targets){
+  if($(window).width() < 1024){return}
   $(targets).animate({ opacity: 1 }, 100);
 }
 
 function hide(targets){
+  if($(window).width() < 1024){return}
   $(targets).animate({ opacity: 0 }, 100);
 }
 
