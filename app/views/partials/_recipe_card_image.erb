@@ -1,0 +1,7 @@
+<div class='image-container'>
+  <% if recipe.image_url.length > 0 %>
+    <%= image_tag recipe.image_url, class:"recipe-card-image" %>
+  <% else %>
+      <%= image_tag "dinner_icon.png", class:"recipe-card-image" %>
+  <% end %>
+</div>
