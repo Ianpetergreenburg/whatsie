@@ -53,6 +53,7 @@ $(document).ready(function(){
 
   $('#save-ingredients').click(function(e){
     e.preventDefault();
+    ingredientsToSave();
     var ingredients = $('#ingredients-list .ingredient-content')
     var ingredientsArray = ingredients.map(function(index){
       return $(this).text()
@@ -79,6 +80,16 @@ $(document).ready(function(){
   })
 
 })
+
+var ingredientsToSave = function(){
+  $('.update-ingredient').each(function(index){
+    var contentCell = $(this).closest('li').find('.ingredient-content')
+    var content = $(contentCell).find('textarea').val()
+    $(contentCell).html(content)
+    $(this).closest('td').html(ingEditPencil + ingXMark)
+  })
+}
+
 
 var replaceWithAddIngredient = function(){
   $('#addIngredientBox').html(addIngredientButton)

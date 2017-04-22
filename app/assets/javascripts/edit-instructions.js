@@ -53,6 +53,7 @@ $(document).ready(function(){
 
   $('#save-instructions').click(function(e){
     e.preventDefault();
+    instructionToSave();
     var instructions = $('#instructions-list .instruction-content')
     var instructionsArray = instructions.map(function(index){
       return $(this).text()
@@ -77,7 +78,14 @@ $(document).ready(function(){
   })
 
 })
-
+var instructionToSave = function(){
+  $('.update-instruction').each(function(index){
+      var contentCell = $(this).closest('li').find('.instruction-content')
+      var content = $(contentCell).find('textarea').val()
+      $(contentCell).html(content)
+      $(this).closest('td').html(editPencil + xMark)
+  })
+}
 var replaceWithAdd = function(){
   $('#addInstructionBox').html(addStepButton)
 }
