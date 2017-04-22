@@ -19,6 +19,9 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find_by_id(params[:id])
     if current_user && current_user_admin || current_user && current_user == @recipe.chef
       render 'edit'
+    elsif current_user
+      @recipe = @recipe.clone(current_user)
+      redirect_to "/recipes/#{@recipe.id}/edit"
     else
       redirect_to '/'
     end

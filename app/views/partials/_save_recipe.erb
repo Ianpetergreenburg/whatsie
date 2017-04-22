@@ -1,4 +1,4 @@
-<% if current_user %>
+<% if current_user && !(current_user.created_recipes.include? recipe) %>
   <% if current_user.saved_recipes.include? recipe %>
     <% button_state = 'Saved!' %>
     <% button_class = 'btn-success' %>

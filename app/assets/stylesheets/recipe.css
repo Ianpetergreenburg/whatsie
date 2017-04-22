@@ -97,7 +97,7 @@
   text-align: center;
 }
 
-.save-recipe-btn {
+.save-recipe-btn, .edit-recipe-btn {
   margin: 20px 0 10px 0;
 }
 

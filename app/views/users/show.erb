@@ -7,22 +7,24 @@
   <h1>Welcome to <%= @user.username %>'s profile</h1>
   <h3 class='header-text'> <%= @user.username %>'s Saved Recipes! </h3>
 <% end %>
+<div class='container-fluid'>
 <% @user.saved_recipes.each_with_index do |recipe, i| %>
   <% if i%4 == 0 %>
     <div class="clearfix visible-md-block visible-lg-block"></div>
   <% end %>
   <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
 <% end %>
-
+</div>
 <% if current_user && current_user_id.to_s == @profile_id %>
   <h3 class='header-text'> Your Created Recipes! </h3>
 <% else %>
   <h3 class='header-text'> <%= @user.username %>'s Created Recipes! </h3>
 <% end %>
-
+<div class='container-fluid'>
 <% @user.created_recipes.each_with_index do |recipe, i| %>
   <% if i%4 == 0 %>
     <div class="clearfix visible-md-block visible-lg-block"></div>
   <% end %>
   <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
 <% end %>
+</div>

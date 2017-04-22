@@ -2,6 +2,7 @@ require 'json'
 require 'httparty'
 require 'open-uri'
 require 'nokogiri'
+require 'deep_cloneable'
 
 class Recipe < ActiveRecord::Base
   has_many :recipe_books
