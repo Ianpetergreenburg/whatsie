@@ -131,3 +131,8 @@
   border-color: red;
   background-color: pink;
 }
+
+.delete-recipe-form {
+  display: inline-block;
+  margin: -20px 0 10px 0;
+}

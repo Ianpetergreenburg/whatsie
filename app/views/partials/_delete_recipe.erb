@@ -1,0 +1,7 @@
+<% if can_delete?(recipe) %>
+  <%= button_to "Delete Recipe", { action: "destroy", id: recipe.id },
+                                  method: :delete,
+                                  class: "delete-recipe-btn btn btn-danger",
+                                  data: { confirm: "Are you sure?" },
+                                  form: {class: 'delete-recipe-form'} %>
+<% end %>

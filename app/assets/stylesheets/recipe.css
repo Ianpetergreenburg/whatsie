@@ -98,7 +98,7 @@
 }
 
 .save-recipe-btn, .edit-recipe-btn {
-  margin: 20px 0 10px 0;
+  margin: 10px 0 10px 0;
 }
 
 @media (min-width: 601px) {
