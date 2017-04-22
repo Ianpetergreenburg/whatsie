@@ -3,14 +3,8 @@
     <div class='recipe-card-title'>
       <h2 class='no-margin'><%= link_to recipe.name, recipe_path(recipe) %></h2>
     </div>
-    <p> Recipe Source: <a href="<%= recipe.url %>">New York Times Cooking</a></p>
-    <% if recipe.image_url.length > 0 %>
-      <img class="recipe-image" src="<%= recipe.image_url %>">
-    <% else %>
-    <div class='dinner-icon'>
-      <%= image_tag "dinner_icon.png", class:"recipe-card-image" %>
-    </div>
-    <% end %>
+    <p> Recipe Source: <a href="<%= recipe.url %>"><%= recipe.source %></a></p>
+    <%= render partial: 'partials/recipe_card_image', locals: {recipe: recipe} %>
     <%= render partial: 'partials/save_recipe', locals: {recipe: recipe} %>
   </div>
 </div>
