@@ -17,6 +17,11 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find_by_id(params[:id])
+    if current_user && current_user_admin || current_user && current_user == @recipe.chef
+      render 'edit'
+    else
+      redirect_to '/'
+    end
   end
 
 
@@ -46,29 +51,21 @@ class RecipesController < ApplicationController
   end
 
   def new
-    @recipe = Recipe.new
+    if current_user
+      @recipe = Recipe.new
+    else
+      redirect_to '/'
+    end
   end
 
   def create
+    if current_user && current_user_admin || current_user && current_user == @recipe.chef
+      render 'edit'
+    else
+      redirect_to '/'
+    end
     recipe_params
   end
-
-  # def create
-  #   @recipe = Recipe.where(url: recipe_params[:url]).first_or_create(recipe_params)
-  #   respond_to do |format|
-  #     if @recipe.valid?
-  #       if helpers.current_user.recipes.include? @recipe
-  #         @recipe_book = RecipeBook.find_by(recipe_id: @recipe.id, user_id: current_user_id).destroy
-  #         format.json { render json: { message: 'Removed!'} }
-  #       else
-  #         RecipeBook.create(recipe_id: @recipe.id, user_id: current_user_id)
-  #         format.json { render json: { message: 'Added!'} }
-  #       end
-  #   	else
-  #         format.json { render json: { message: 'Invalid Recipe!'} }
-  #     end
-  #   end
-  # end
 
   private
   def recipe_params

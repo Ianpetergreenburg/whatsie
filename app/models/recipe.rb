@@ -8,6 +8,7 @@ class Recipe < ActiveRecord::Base
   has_many :users, through: :recipe_books
   has_many :recipe_ingredients
   has_many :recipe_instructions
+  belongs_to :chef, class_name: 'User', optional: true
 
   validates_presence_of :name
   validates_presence_of :url
@@ -20,6 +21,14 @@ class Recipe < ActiveRecord::Base
 
   def instructions
     recipe_instructions.sort_by{|ri| ri.order }
+  end
+
+  def clone(user)
+    new_copy = self.deep_clone include: [:recipe_ingredients, :recipe_instructions]
+    new_copy.chef = user
+    new_copy.name = "#{user.username}'s #{new_copy.name}"
+    new_copy.save
+    new_copy
   end
 
   def load_ingredients(ingredients_to_load)

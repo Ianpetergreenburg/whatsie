@@ -121,6 +121,12 @@
   /*visibility: hidden;*/
 }
 
+@media(max-width: 1024px) {
+  .hoverable {
+    opacity: 1;
+  }
+}
+
 .failed-enter {
   border-color: red;
   background-color: pink;

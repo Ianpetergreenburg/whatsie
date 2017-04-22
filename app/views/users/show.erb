@@ -2,12 +2,27 @@
 
 <% if current_user && current_user_id.to_s == @profile_id %>
   <h1>Welcome, <%= @user.username %></h1>
-  <h3> Your Recipes! </h3>
+  <h3 class='header-text'> Your Saved Recipes! </h3>
 <% else %>
   <h1>Welcome to <%= @user.username %>'s profile</h1>
-  <h3> <%= @user.username %>'s Saved Recipes! </h3>
+  <h3 class='header-text'> <%= @user.username %>'s Saved Recipes! </h3>
 <% end %>
-<% @user.recipes.each do |recipe| %>
+<% @user.saved_recipes.each_with_index do |recipe, i| %>
+  <% if i%4 == 0 %>
+    <div class="clearfix visible-md-block visible-lg-block"></div>
+  <% end %>
   <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
 <% end %>
 
+<% if current_user && current_user_id.to_s == @profile_id %>
+  <h3 class='header-text'> Your Created Recipes! </h3>
+<% else %>
+  <h3 class='header-text'> <%= @user.username %>'s Created Recipes! </h3>
+<% end %>
+
+<% @user.created_recipes.each_with_index do |recipe, i| %>
+  <% if i%4 == 0 %>
+    <div class="clearfix visible-md-block visible-lg-block"></div>
+  <% end %>
+  <%= render partial: 'partials/recipe_card', locals: {recipe: recipe} %>
+<% end %>
