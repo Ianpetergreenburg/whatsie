@@ -1,9 +1,30 @@
 <footer class="footer">
-  <div class="footer-section">
-    <nav>
-      <ul id="footer-links">
-        <li><a href="https://github.com/ianpetergreenburg/whatsie">Whatsie on Github</a></li>
-      </ul>
-    </nav>
+  <div class="footer-section container">
+    <div class="row">
+      <div class="col-sm-2">
+        <h6><strike>&copy;</strike> 2017 IPG</h6>
+      </div>
+      <div class="col-sm-6">
+        <h5><b>About Whatsie</b></h5>
+        <p><small>
+          We all wish choosing what to eat was easier and having the entire internet's stockpile of recipes on hand doesn't help. Let Whatsie guide your stomach. Or use <a href="https://www.youtube.com/watch?v=-mx7vZDhStI" target="_blank">this video</a> to help meditate on your choice.
+        </small></p>
+      </div>
+      <div class="col-sm-2">
+        <h5><b>Navigation</b></h5>
+        <ul class="list-unstyled">
+          <li><a href="/"><small>home</small></a></li>
+          <% if logged_in? %>
+            <li><a href="/user/<%= current_user_id %>"><small>profile</small></a></li>
+          <% else %>
+            <li><a href="/"><small>profile</small></a></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="col-sm-2">
+        <h6>Coded with <span class="glyphicon glyphicon-heart"></span></h6>
+        <small>Whatsie on <a href="https://github.com/ianpetergreenburg/whatsie">Github </a><i class="fa fa-github" aria-hidden="true"></i></small>
+      </div>
+    </div>
   </div>
 </footer>

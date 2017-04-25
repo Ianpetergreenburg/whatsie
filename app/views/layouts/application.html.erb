@@ -27,16 +27,15 @@
   </head>
 
   <body>
-    <main class='main-container'>
+    <div id='main-wrapper'>
       <%= render 'layouts/navbar' %>
-      <div class='content'>
-        <%= yield %>
-      </div>
+      <main class='main-container'>
+        <div class='content'>
+          <%= yield %>
+        </div>
+      </main>
       <%= render 'layouts/footer' %>
-    </main>
-
-
-
+    </div>
   </body>
 
   <script>
