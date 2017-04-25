@@ -27,6 +27,10 @@ module SessionHelper
     current_user = nil
   end
 
+  def has_recipe?(recipe)
+    current_user && current_user.saved_recipes.include?(recipe)
+  end
+
   def can_edit?(recipe)
     current_user_admin || current_user && recipe.chef == current_user
   end

@@ -1,3 +1,3 @@
-<% if can_edit?(recipe) %>
+<% if can_edit?(recipe) || has_recipe?(recipe) %>
   <%= link_to 'Edit Recipe', edit_recipe_path(recipe), {class: "edit-recipe-btn btn btn-success"} %>
 <% end %>
