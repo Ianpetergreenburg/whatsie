@@ -28,7 +28,7 @@ module SessionHelper
   end
 
   def can_edit?(recipe)
-    current_user_admin || current_user && recipe.chef = current_user
+    current_user_admin || current_user && recipe.chef == current_user
   end
 
   alias_method :can_delete?, :can_edit?
